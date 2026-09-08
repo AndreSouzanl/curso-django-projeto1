@@ -1,11 +1,22 @@
 from django.shortcuts import render
 from utils.recipes.factory import make_recipe
+from .models import Recipe
 
 # Create your views here.
 
 def home(resquest):
+    recipes = Recipe.objects.all().order_by('-id')
     context={
-        'recipes': [make_recipe() for _ in range(10)]
+        'recipes': recipes,
+    }
+    return render(resquest, 'recipes/pages/home.html',context) 
+
+def category(resquest, category_id):
+    recipes = Recipe.objects.filter(
+        category_id=category_id
+    ).order_by('-id')
+    context={
+        'recipes': recipes,
     }
     return render(resquest, 'recipes/pages/home.html',context) 
 
