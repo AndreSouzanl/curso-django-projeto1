@@ -5,7 +5,9 @@ from .models import Recipe
 # Create your views here.
 
 def home(resquest):
-    recipes = Recipe.objects.all().order_by('-id')
+    recipes = Recipe.objects.filter(
+         is_published = True
+    ).order_by('-id')
     context={
         'recipes': recipes,
     }
@@ -13,12 +15,13 @@ def home(resquest):
 
 def category(resquest, category_id):
     recipes = Recipe.objects.filter(
-        category_id=category_id
+        category_id=category_id,
+        is_published = True
     ).order_by('-id')
     context={
         'recipes': recipes,
     }
-    return render(resquest, 'recipes/pages/home.html',context) 
+    return render(resquest, 'recipes/pages/category.html',context) 
 
 def recipe(resquest, id):
     context={
