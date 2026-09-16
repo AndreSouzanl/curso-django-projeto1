@@ -1,13 +1,13 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
-from utils.recipes.factory import make_recipe
 from .models import Recipe
 
 # Create your views here.
 
 def home(resquest):
-    recipes = Recipe.objects.filter(
-         is_published = True
-    ).order_by('-id')
+    recipes =Recipe.objects.filter(
+        is_published = True
+        ).order_by('-id')
+    
     context={
         'recipes': recipes,
     }
