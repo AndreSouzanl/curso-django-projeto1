@@ -59,5 +59,6 @@ class RecipeViewsTest(RecipeTestBase):
         reverse('recipes:recipe', kwargs={'id': 1000}))
         self.assertEqual(response.status_code, 404
         )
-        
+    
+    
     
